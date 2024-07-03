@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    . d{
+         margin-bottom: 20px;
+         gap:20px
+
+
+
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="flex flex-col gap-4 justify-center items-center p-4 my-6 mt-16">
+
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold">
+      Music Files
+    </h1>
+
+    <form action="{% url 'search_results' %}" method="get">
+    <div class="relative p-3 border border-gray-200 rounded-lg w-full max-w-lg">
+        <input type="text" name="q" class="rounded-md p-3 w-full" placeholder="Search MCQ | Topic | Course">
+
+        <button type="submit" class="absolute right-6 top-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+        </button>
+
+    </div>
+    </form>
+</div>
+
+<div style="margin-left:550px;">
+
+
+
+ <div class="flex items-center gap-1 px-2" >
+                <a class="w-full min-w-xl" href="https://www.youtube.com/">
+                    <img src="https://mcqmate.com/public/images/icons/youtube.svg" alt="Youtube Button"
+                        class="h-28">
+                </a>
+ </div>
+</div>
+
+
+
+
+
+
+
+
+
+    <ul>
+        <div class="d" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            {% for music in object_list %}
+                <div style="margin-bottom: 20px;">
+                    <div style="margin-bottom: 10px;">
+                        {% if music.img %}
+                        <a href="{% url 'music-detail-view' music.id %}"><img src="{{ music.img.url }}" alt="{{ music.name }} cover" style="max-width: 200px; height: auto;">
+                        <span class="clear-left bg-[#eff0f9] cursor-pointer group [&_*]:transition-all [&_*]:duration-150 [&_*]:ease-in">
+                            <span class="px-3 py-3 block bg-white rounded-full shadow-md group-hover:bg-rose-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:fill-white group-hover:stroke-white" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7e9cff" fill="#7e9cff" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M7 4v16l13 -8z" />
+                                </svg>
+                            </span>
+                        </span>
+                        </a>
+                        {% endif %}
+                    </div>
+    <strong><h1>{{ music.name }}</h1></strong>
+
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+
+    </ul>
+
+
+
+
+</body>
+</html>
